@@ -12,17 +12,17 @@ class Post
     /* Relation BDD avec Doctrine*/
     #[ORM\Id()]
     #[ORM\GeneratedValue(strategy: "AUTO")]
-    #[ORM\Column(type: "Integer")]
+    #[ORM\Column(type: "integer")]
     private int $id;
 
     /* Validation avec Doctrine*/
-    #[ORM\Column(type: "string", nullbale: true, length: 180)]
+    #[ORM\Column(type: "string", nullable: true, length: 180)]
     /* Validation avec Form Constraints "Assert"
     #[Assert\Length(min: 0, max: 150, minMessage: "Le titre à 0 caractères", maxMessage: "Le titre ne doit pas faire plus de 150 caractères")]
       */
     private ?string $title = NULL;
 
-    #[ORM\Column(type: "text", nullbale: false, length: 300)]
+    #[ORM\Column(type: "text", nullable: false, length: 300)]
 
     /* Validation avec Form Constraints "Assert"
     #[Assert\NotBlank(message: "Le post ne doit pas être vide")]
