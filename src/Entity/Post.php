@@ -2,13 +2,44 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity()]
+#[ORM\Table(name: "publication")]
 class Post
 {
+    /* Relation BDD avec Doctrine*/
+    #[ORM\Id()]
+    #[ORM\GeneratedValue(strategy: "AUTO")]
+    #[ORM\Column(type: "Integer")]
     private int $id;
+
+    /* Validation avec Doctrine*/
+    #[ORM\Column(type: "string", nullbale: true, length: 180)]
+    /* Validation avec Form Constraints "Assert"
+    #[Assert\Length(min: 0, max: 150, minMessage: "Le titre à 0 caractères", maxMessage: "Le titre ne doit pas faire plus de 150 caractères")]
+      */
     private ?string $title = NULL;
+
+    #[ORM\Column(type: "text", nullbale: false, length: 300)]
+
+    /* Validation avec Form Constraints "Assert"
+    #[Assert\NotBlank(message: "Le post ne doit pas être vide")]
+    #[Assert\Length(min: 1, max: 300, minMessage: "Le contenu doit avoir au moins 1 caractère", maxMessage: "Le contenu ne doit pas faire plus de 300 caractères")]
+    */
     private string $content;
+
+
+    #[ORM\Column(type: "text")]
+    /* Validation avec Form Constraints "Assert"
+    #[Assert\NotBlank(message: "L\'URL de l'image ne doit pas être vide")]
+    #[Assert\Url(message: "Il doit s\'agit d\'une adresse URL")]
+    */
     private ?string $image = NULL;
-    private $user;
+
+    /*#[ORM\Column(targetEntity: "App\Entity\User", inverseBy:"posts")]
+    private $user;*/
 
     public function getId(): int
     {
@@ -21,7 +52,7 @@ class Post
         return $this;
     }
 
-    
+
     public function getTitle()
     {
         return $this->title;
@@ -33,7 +64,7 @@ class Post
 
         return $this;
     }
- 
+
     public function getContent()
     {
         return $this->content;
@@ -47,12 +78,12 @@ class Post
         return $this;
     }
 
-  
+
     public function getImage()
     {
         return $this->image;
     }
- 
+
     public function setImage($image)
     {
         $this->image = $image;
@@ -60,6 +91,7 @@ class Post
         return $this;
     }
 
+    /*
     public function getUser()
     {
         return $this->user;
@@ -71,4 +103,5 @@ class Post
 
         return $this;
     }
+    */
 }

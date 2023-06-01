@@ -1,9 +1,8 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-	{{form_start(post_form)}}
-	{{ form_row(post_form.title) }}
-    {{ form_row(post_form.content) }}
-    {{ form_row(post_form.image) }}
+	{{ form_start(post_form) }}
+	{{ form_rest(post_form) }}
 	<input type="submit" value="Publier">
+	{{ form_end(post_form) }}
 {% endblock %}
