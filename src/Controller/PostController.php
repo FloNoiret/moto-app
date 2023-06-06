@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PostController extends AbstractController
 {
-    #[Route('/post', name: 'home')]
+    #[Route('/', name: 'home')]
     public function index(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Post::class);
@@ -30,9 +30,11 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $post -> setUser($this->getUser());
             $entityManager = $doctrine->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
+            return $this-> redirectToRoute("home");
         }
         return $this->render('post/form.html.twig', [
             "post_form" => $form->createView()
