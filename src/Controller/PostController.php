@@ -25,40 +25,43 @@ class PostController extends AbstractController
     #[Route('/post/new')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
-        $post = new Post();
-        $form = $this->createForm(PostType::class, $post);
-        $form->handleRequest($request);
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+            $post = new Post();
+            $form = $this->createForm(PostType::class, $post);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $post -> setUser($this->getUser());
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($post);
-            $entityManager->flush();
-            return $this-> redirectToRoute("home");
-        }
-        return $this->render('post/form.html.twig', [
-            "post_form" => $form->createView()
-        ]);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $post->setUser($this->getUser());
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($post);
+                $entityManager->flush();
+                return $this->redirectToRoute("home");
+            }
+            return $this->render('post/form.html.twig', [
+                "post_form" => $form->createView()
+            ]);
     }
 
     #[Route('/post/delete/{id<\d+>}', name: 'delete-post')]
     public function delete(Post $post, ManagerRegistry $doctrine): Response
     {
-            $entityManager = $doctrine->getManager();
-            $entityManager->remove($post);
-            $entityManager->flush();
-            return $this-> redirectToRoute("home");
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($post);
+        $entityManager->flush();
+        return $this->redirectToRoute("home");
     }
 
     #[Route('/post/edit/{id<\d+>}', name: 'edit-post')]
     public function update(Request $request, Post $post, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $doctrine->getManager();
             $entityManager->flush();
-            return $this-> redirectToRoute("home");
+            return $this->redirectToRoute("home");
         }
         return $this->render('post/form.html.twig', [
             "post_form" => $form->createView()

@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
-        $this->passwordHasher = $passwordHasher;
+        $this-> passwordHasher = $passwordHasher;
         $this->posts = new ArrayCollection();
     }
     
@@ -96,7 +96,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setPassword(string $password): self
     {
-        $this->password = $password;
+        $this->password = $this-> passwordHasher-> hashPassword($this, $password);
         return $this;
     }
 
