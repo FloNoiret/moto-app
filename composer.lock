@@ -6673,16 +6673,16 @@
         },
         {
             "name": "symfony/web-profiler-bundle",
-            "version": "v6.2.11",
+            "version": "v6.2.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-profiler-bundle.git",
-                "reference": "1338ad6486f7ce22401a1c0d799ccb5f499b7f8f"
+                "reference": "89a78db2bd961d7fa63865e52f79c7d505702427"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/1338ad6486f7ce22401a1c0d799ccb5f499b7f8f",
-                "reference": "1338ad6486f7ce22401a1c0d799ccb5f499b7f8f",
+                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/89a78db2bd961d7fa63865e52f79c7d505702427",
+                "reference": "89a78db2bd961d7fa63865e52f79c7d505702427",
                 "shasum": ""
             },
             "require": {
@@ -6731,7 +6731,7 @@
             "description": "Provides a development tool that gives detailed information about the execution of any request",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/web-profiler-bundle/tree/v6.2.11"
+                "source": "https://github.com/symfony/web-profiler-bundle/tree/v6.2.13"
             },
             "funding": [
                 {
@@ -6747,7 +6747,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-05T15:52:57+00:00"
+            "time": "2023-07-19T20:17:04+00:00"
         },
         {
             "name": "theofidry/alice-data-fixtures",
