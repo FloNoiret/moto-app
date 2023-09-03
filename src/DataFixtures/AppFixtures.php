@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Post;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -25,7 +26,7 @@ class AppFixtures extends Fixture
         $anna = new User($this->passwordHasher);
         $anna->setUsername("Anna")->setPassword("azerty");
         $manager->persist($anna);
-
+        
         $manager->flush();
     }
 }
