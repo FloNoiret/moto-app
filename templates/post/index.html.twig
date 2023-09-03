@@ -1,15 +1,21 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-	Mes posts
+	Social Piston
 {% endblock %}
 
 {% block body %}
-	{% for post in posts %}
-		<div class="d-flex justify-content-around flex-wrap container mt-5">
-			<div class="card" style="width: 18rem;">
+
+	<h1 class="text-center p-4 ">
+		The Riders Billboard
+	</h1>
+	<hr/>
+	<div class="d-flex justify-content-around flex-wrap">
+
+		{% for post in posts %}
+			<div class="card m-2" style="width: 18rem;">
 				{% if post.image %}
-					<img src={{ post.image }} alt="">
+					<img class="card-img-top" src={{ post.image }} alt="">
 				{% endif %}
 				<div class="card-body">
 					{% if post.title %}
@@ -18,11 +24,14 @@
 					<p class="card-text">{{ post.content }}</p>
 
 					{% if app.user %}
-						<a href="{{ path('delete-post', {'id':post.id}) }}" class="btn btn-danger">Supprimer</a>
-						<a href="{{ path('edit-post', {'id':post.id}) }}" class="btn btn-warning">Modifier</a>
+						{% if app.user == post.user %}
+							<a href="{{ path('delete-post', {'id':post.id}) }}" class="btn btn-danger">Supprimer</a>
+							<a href="{{ path('edit-post', {'id':post.id}) }}" class="btn btn-warning">Modifier</a>
+						{% endif %}
+
 					{% endif %}
 				</div>
 			</div>
-		</div>
-	{% endfor %}
+		{% endfor %}
+	</div>
 {% endblock %}
