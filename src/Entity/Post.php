@@ -18,28 +18,27 @@ class Post
 
     /* Validation avec Doctrine*/
     #[ORM\Column(type: "string", nullable: true, length: 180)]
-    /* Validation avec Form Constraints "Assert"
-    #[Assert\Length(min: 0, max: 150, minMessage: "Le titre à 0 caractères", maxMessage: "Le titre ne doit pas faire plus de 150 caractères")]
-      */
+    /*Validation avec Form Constraints "Assert"*/
+    #[Assert\Length(min: 0, max: 180, minMessage: "Le titre à 0 caractères", maxMessage: "Le titre ne doit pas faire plus de 180 caractères")]
+
     private ?string $title = NULL;
 
     #[ORM\Column(type: "text", nullable: false, length: 300)]
-
-    /* Validation avec Form Constraints "Assert"
+    /* Validation avec Form Constraints "Assert"*/
     #[Assert\NotBlank(message: "Le post ne doit pas être vide")]
     #[Assert\Length(min: 1, max: 300, minMessage: "Le contenu doit avoir au moins 1 caractère", maxMessage: "Le contenu ne doit pas faire plus de 300 caractères")]
-    */
+    
     private string $content;
 
 
     #[ORM\Column(type: "text")]
-    /* Validation avec Form Constraints "Assert"
+    /* Validation avec Form Constraints "Assert" */
     #[Assert\NotBlank(message: "L\'URL de l'image ne doit pas être vide")]
     #[Assert\Url(message: "Il doit s\'agit d\'une adresse URL")]
-    */
+    
     private ?string $image = NULL;
 
-    #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy:"posts")]
+    #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "posts")]
     private $user;
 
     public function getId(): int
@@ -108,7 +107,7 @@ class Post
 
     /**
      * Get the value of user
-     */ 
+     */
     public function getUser()
     {
         return $this->user;
@@ -118,7 +117,7 @@ class Post
      * Set the value of user
      *
      * @return  self
-     */ 
+     */
     public function setUser($user)
     {
         $this->user = $user;
